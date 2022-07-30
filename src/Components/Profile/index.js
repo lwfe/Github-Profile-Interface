@@ -9,10 +9,11 @@ import {
   Name,
   OtherInfo,
   Link,
+  OtherText,
 } from "./styles";
 
 function Profile() {
-  const userDetails = useContext(UserContext);
+  const { userDetails } = useContext(UserContext);
 
   return (
     <Container>
@@ -23,15 +24,27 @@ function Profile() {
             <Name>{userDetails.name}</Name>
             <Text>Username: {userDetails.login}</Text>
             <Text>Bio: {userDetails.bio}</Text>
-            <Text>Location: {userDetails.location}</Text>
+
             <Text>
-              Blog: <Link href={userDetails.blog}>{userDetails.blog}</Link>
+              Blog:
+              <Link href={userDetails.blog} target="_blank">
+                {userDetails.blog}
+              </Link>
             </Text>
+            <Text>Location: {userDetails.location}</Text>
 
             <OtherInfo>
-              <Text>Seguidores: {userDetails.followers}</Text>
-              <Text>Seguindo: {userDetails.following}</Text>
-              <Text>Repositórios: {userDetails.public_repos}</Text>
+              <OtherText>
+                Seguidores
+                <br /> {userDetails.followers}
+              </OtherText>
+              <OtherText>
+                Seguindo <br />
+                {userDetails.following}
+              </OtherText>
+              <OtherText>
+                Repositórios <br /> {userDetails.public_repos}
+              </OtherText>
             </OtherInfo>
           </ProfileDetails>
         </ProfileWrapper>

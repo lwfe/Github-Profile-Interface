@@ -6,10 +6,13 @@ import { UserContext } from "../../context/UserContext";
 function App({ children }) {
   const [user, setUser] = useState("");
   const [userDetails, setUserDetails] = useState();
+  const [userRepos, setUserRepos] = useState();
 
   function getUser(user) {
     api.get("users/" + user).then((response) => setUserDetails(response.data));
-    console.log(userDetails);
+    api
+      .get("users/" + user + "/repos")
+      .then((response) => setUserRepos(response.data));
   }
 
   function handleChange(e) {
@@ -22,7 +25,7 @@ function App({ children }) {
 
   return (
     <Container>
-      <UserContext.Provider value={userDetails}>
+      <UserContext.Provider value={{ userDetails, userRepos }}>
         <InputGroup>
           <Input type="text" onChange={handleChange} />
           <SearchButton type="submit" value="Search" onClick={handleClick} />

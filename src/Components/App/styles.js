@@ -12,6 +12,7 @@ export const InputGroup = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
+  margin-top: 8rem;
 `;
 
 export const Input = styled.input`
